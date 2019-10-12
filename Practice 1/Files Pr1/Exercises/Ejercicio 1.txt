@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------------------
+Ejercicio 1: Analizar el código del programa show_file.c, que lee byte a byte el contenido
+de un fichero, cuyo nombre se pasa como parámetro, y lo muestra por pantalla usando funcio-
+nes de la biblioteca estandar de “C”. Responda a las siguientes preguntas:
+-------------------------------------------------------------------------------------------
+
+Ejercicio 1: ¿Qué comando se debe emplear para generar el ejecutable del programa (show_file)
+             invocando directamente al compilador gcc (sin usar make)?
+            
+             $> gcc show_file.c -o show_file 
+        
+Ejercicio 2: Indique dos comandos para llevar a cabo respectivamente la compilación del programa
+             (generación de fichero objeto) y el enlazado del mismo de forma independiente.            
+
+             $> gcc -c -Wall -g show_file.c -o show_file.o
+             $> gcc -g -o show_file show_file.o
+
+Ejercicio 3: Realizar la lectura byte a byte del fichero de entrada empleando la función fread() en
+             lugar de getc(). Modificar también la invocación a la función putc() por una llamada
+             a fwrite()
+
+Ejercicio 4: Añadir un parámetro al programa modificado para permitir al usuario especificar el ta-
+             maño de bloque en bytes a usar en cada lectura realizada por fread().
+
+
+             Las modificaciones de los ejercicios 3 y 4 se han realizado en sucesivas versiones del 
+             fichero show_file.c.
