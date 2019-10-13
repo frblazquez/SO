@@ -1,0 +1,10 @@
+--------------------------------------------------------------------------------------------
+Ejercicio 2: El programa badsort-ptr.c, cuyo código fuente se muestra a continuación, ha si-
+do desarrollado para realizar una ordenación por el método de la burbuja aplicada a un array
+de pares (cadena de caracteres, entero) inicializado dentro del programa. El programa emplea
+aritmética de punteros para acceder a los distintos elementos del array durante el recorrido.
+Lamentablemente, el programador ha cometido algun/os error/es. Utilizando un depurador
+de C (p.ej.,gdb o ddd) el alumno debe encontrar y corregir el/los error/es.
+--------------------------------------------------------------------------------------------
+
+

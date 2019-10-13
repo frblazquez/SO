@@ -14,22 +14,22 @@ item array[] = {
 };
 
 void sort(item *a, int n) {
-    int i = 0, j = 0;
-    int s = 1;
-    item* p;
+    int op=1, j, i = n;
 
-    for(; i < n & s != 0; i++) {
-        s = 0;
-        p = a;
-        j = n-1;
-        do {
-            if( p->key > (p+1)->key) {
-                item t = *p;
-                *p  = *(p+1);
-                *(p+1) = t;
-                s++;
+    while(i>0 && op!=0)
+    {
+        op=0; i--;
+
+        for(j=0; j <= i; j++)
+        {
+            if(a[j+1].key < a[j].key){
+                item aux = a[j];
+                a[j]=a[j+1];
+                a[j+1]=aux;      
+
+                ++op;
             }
-        } while ( --j >= 0 );
+        }
     }
 }
 
