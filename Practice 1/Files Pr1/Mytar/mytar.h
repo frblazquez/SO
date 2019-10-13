@@ -3,6 +3,8 @@
 
 #include <limits.h>
 
+#define CP_BLOCK_SIZE 4096
+
 typedef enum{
   NONE,
   ERROR,
