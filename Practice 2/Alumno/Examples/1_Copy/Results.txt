@@ -1,0 +1,55 @@
+# Resultados al ejecutar el script de copia sobre una imagen de extensión .jpg de tamaño 6,1 MB
+#
+# A mayor tamaño de buffer reducimos el número de llamadas al sistema operativo y con ello el
+# tiempo de ejecución. Las mejoras causadas por el aumento del tamaño del buffer dejan de ser
+# apreciables a partir de un tamaño de buffer de 1024/2048 B.
+
+(base) frblazquez@frblazquez-MRC-WX0:~/Documentos/Universidad/4º Carrera/SistemaOperativos/Prácticas/Practice 2/Alumno/Examples/1_Copy$ time ./copy image.jpg 
+copied.jpg 512
+Starting COPY
+Ends of COPY
+
+real	0m0,040s
+user	0m0,012s
+sys	0m0,028s
+(base) frblazquez@frblazquez-MRC-WX0:~/Documentos/Universidad/4º Carrera/SistemaOperativos/Prácticas/Practice 2/Alumno/Examples/1_Copy$ time ./copy image.jpg 
+copied.jpg 128
+Starting COPY
+Ends of COPY
+
+real	0m0,127s
+user	0m0,029s
+sys	0m0,097s
+(base) frblazquez@frblazquez-MRC-WX0:~/Documentos/Universidad/4º Carrera/SistemaOperativos/Prácticas/Practice 2/Alumno/Examples/1_Copy$ time ./copy image.jpg 
+copied.jpg 1024
+Starting COPY
+Ends of COPY
+
+real	0m0,027s
+user	0m0,005s
+sys	0m0,023s
+(base) frblazquez@frblazquez-MRC-WX0:~/Documentos/Universidad/4º Carrera/SistemaOperativos/Prácticas/Practice 2/Alumno/Examples/1_Copy$ time ./copy image.jpg 
+copied.jpg 2048
+Starting COPY
+Ends of COPY
+
+real	0m0,018s
+user	0m0,008s
+sys	0m0,011s
+(base) frblazquez@frblazquez-MRC-WX0:~/Documentos/Universidad/4º Carrera/SistemaOperativos/Prácticas/Practice 2/Alumno/Examples/1_Copy$ time ./copy image.jpg 
+copied.jpg 4096
+Starting COPY
+Ends of COPY
+
+real	0m0,014s
+user	0m0,000s
+sys	0m0,015s
+(base) frblazquez@frblazquez-MRC-WX0:~/Documentos/Universidad/4º Carrera/SistemaOperativos/Prácticas/Practice 2/Alumno/Examples/1_Copy$ time ./copy image.jpg 
+copied.jpg 8192
+Starting COPY
+Ends of COPY
+
+real	0m0,012s
+user	0m0,001s
+sys	0m0,012s
+
