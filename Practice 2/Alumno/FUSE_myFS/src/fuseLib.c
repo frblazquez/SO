@@ -478,12 +478,19 @@ static int my_rmnod(const char *path)
     myFileSystem.directory.files[idxFileinDirectory].freeFile = true;
     myFileSystem.directory.numFiles--;
     
+    // Free the reserved blocks for the file
+    int i;
+    for(i=0; i<(*(myFileSystem.nodes[idxNodoI])).numBlocks; i++){
+        myFileSystem.bitMap[(*(myFileSystem.nodes[idxNodoI])).blocks[i]]=0;
+    }
+    
+    // Remove the inode
     free(myFileSystem.nodes[idxNodoI]);
     myFileSystem.nodes[idxNodoI] = NULL;
     myFileSystem.numFreeNodes++;
 
+    // Move all these information to our virtual disk
     updateDirectory(&myFileSystem);
-    updateNode(&myFileSystem, idxNodoI, myFileSystem.nodes[idxNodoI]);
 
     return 0;
 }

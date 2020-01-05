@@ -5,10 +5,11 @@
 #include <time.h>
 #include <pwd.h>
 #include <grp.h>
+#include <string.h>
 
 char permissions[] = {'x', 'w', 'r'};
 
-int status(char *);
+int status(char *, int);
 
 int main(int argc, char *argv[]) {
 	int i;
@@ -18,21 +19,35 @@ int main(int argc, char *argv[]) {
 		fprintf(stderr, "Usage: %s files...\n", argv[0]), exit(-1);
 
 	// Show the status of each file
-	for (i=1; i<argc; i++)
-		status(argv[i]);
+	for (i=1; i<argc; i++){
+
+        if(!strcmp(argv[i], "-L")){
+            i++;            
+		    status(argv[i], 1);
+        } else {
+            status(argv[i], 0);
+        }
+    }
 
 	exit(0);
 }
 
-int status(char *filename) {
+int status(char *filename, int openLinked) {
 	struct stat buf;
 	struct passwd *pw;
 	struct group *gr;
 	int i;
 
 	// Fills buf with the stat structure containing file attributes
-	if (stat(filename, &buf) == -1)
-		perror(filename), exit(-1);
+    // stat vs lstat? See: stackoverflow.com/questions/3984948/
+    if(openLinked){
+	    if (stat(filename, &buf) == -1)
+		    perror(filename), exit(-1);
+    } else {
+        if (lstat(filename, &buf) == -1)
+		    perror(filename), exit(-1);
+    }
+    
 	printf("File: %s\n", filename);
 
 	// The st_dev field describes the device on which this file resides. 
@@ -52,14 +67,14 @@ int status(char *filename) {
             printf("regular.\n"); break;
         case S_IFDIR:
             printf("directory.\n"); break;
+        case S_IFLNK:
+            printf("symbolic link.\n"); break;
         case S_IFCHR:
             printf("character device.\n"); break;
         case S_IFBLK:
             printf("block device.\n"); break;
         case S_IFIFO:
             printf("FIFO (named pipe).\n"); break;
-        case S_IFLNK:
-            printf("symbolic link.\n"); break;
         default:
             printf("UNKNOWN.\n"); break;
 	}
